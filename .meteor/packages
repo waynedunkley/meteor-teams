@@ -6,6 +6,7 @@
 
 meteor-platform
 accounts-password
-accounts-google
 iron:router
 twbs:bootstrap
+service-configuration
+accounts-google
