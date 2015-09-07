@@ -1,18 +1,15 @@
 var okrsData = [
   {
-    title: 'Introducing Telescope',
-    author: 'Sacha Greif',
-    url: 'http://sachagreif.com/introducing-telescope/'
+    title: 'Run an internal Wordpress training session',
+    complete: '0%'
   },
   {
-    title: 'Meteor',
-    author: 'Tom Coleman',
-    url: 'http://meteor.com'
+    title: 'Document and configure best practice for MF Wordpress process',
+    complete: '0%'
   },
   {
-    title: 'The Meteor Book',
-    author: 'Tom Coleman',
-    url: 'http://themeteorbook.com'
+    title: 'Build an OKR tracker with Meteor/Angular',
+    complete: '0%'
   }
 ];
 Template.okrList.helpers({
