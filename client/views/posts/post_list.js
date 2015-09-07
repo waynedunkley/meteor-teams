@@ -1,4 +1,4 @@
-var okrsData = [
+var postsData = [
   {
     title: 'Run an internal Wordpress training session',
     complete: '0%'
@@ -12,6 +12,6 @@ var okrsData = [
     complete: '0%'
   }
 ];
-Template.okrList.helpers({
-  okrs: okrsData
+Template.postList.helpers({
+  posts: postsData
 });
