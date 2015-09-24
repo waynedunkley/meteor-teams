@@ -1,5 +1,5 @@
 Meteor.publish('posts', function() {
-  return Posts.find();
+  return Posts.find({'userId':this.userId});
 });
 
 Meteor.publish('userData', function () {
