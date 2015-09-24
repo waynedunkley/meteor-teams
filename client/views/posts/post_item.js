@@ -4,5 +4,8 @@ Template.postItem.helpers({
   },
   description: function(){
     return this.description;
+  },
+  keyResults: function(){
+    return this.keyResults;
   }
 });

@@ -1,0 +1,25 @@
+@import "bootstrap";
+
+html,
+body {
+  background-color: $gray;
+}
+
+header {
+  margin-bottom: 50px;
+}
+
+.navigation {
+  background-color: $gray-darker;
+}
+
+.hero {
+  background-color: $gray;
+  .hero-content {
+    padding: 50px 0;
+  }
+  h1,
+  p.lead {
+    color: $brand-white;
+  }
+}

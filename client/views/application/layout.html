@@ -1,12 +1,5 @@
 <template name="applicationLayout">
-  <header>
-    {{> login}}
-    <p>App</p>
-    <a href="{{pathFor 'dashboard'}}">Dashboard</a>
-    {{#if currentUser}}
-      <a href="{{pathFor 'postSubmit'}}">New Post</a>
-    {{/if}}
-  </header>
+  {{> header}}
 
   {{> yield}}
 

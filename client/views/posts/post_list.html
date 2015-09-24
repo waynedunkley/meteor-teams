@@ -1,7 +1,17 @@
 <template name="postList">
   <div class="posts">
     {{#each posts}}
-      {{> postItem}}
+      {{> postListItem}}
+    {{/each}}
+  </div>
+</template>
+
+<template name="postListItem">
+  <div class="post-content">
+    <h3><a href="{{pathFor 'postPage'}}">{{title}}</a></h3>
+    <p>{{description}}</p>
+    {{#each keyResults}}
+      <p>{{this.title}}</p>
     {{/each}}
   </div>
 </template>

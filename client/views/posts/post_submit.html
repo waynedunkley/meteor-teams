@@ -1,23 +1,43 @@
 <template name="postSubmit">
-  <form class="main">
-    <div class="control-group">
-        <label for="title">OKR Title</label>
-        <div class="controls">
-          <input name="title" type="text" value="" placeholder="OKR Title"/>
+  <div class="container">
+		<div class="col-md-12">
+      <form class="main">
+        <div class="control-group">
+            <label for="title">Title</label>
+            <div class="controls">
+              <input name="title" type="text" value="" placeholder="OKR Title"/>
+            </div>
         </div>
-    </div>
 
-    <div class="control-group">
-        <label for="description">Description</label>
-        <div class="controls">
-          <textarea name="description" type="text" value=""></textarea>
+        <div class="control-group">
+            <label for="description">Description</label>
+            <div class="controls">
+              <textarea name="description" type="text" value=""></textarea>
+            </div>
         </div>
-    </div>
 
-    <div class="control-group">
-        <div class="controls">
-          <input type="submit" value="Submit" class="btn btn-primary"/>
+        <div class="control-group">
+            <label for="keyResult">Key Results</label>
+            <div class="controls">
+              <ul class="keyResultsList">
+                {{#each inputs}}
+                  {{> keyResultItemSubmitForm}}
+                {{/each}}
+              </ul>
+              <a href="" class="addKeyResult">Add another</a>
+            </div>
         </div>
+
+        <div class="control-group">
+            <div class="controls">
+              <input type="submit" value="Submit" class="btn btn-primary"/>
+            </div>
+        </div>
+      </form>
     </div>
-  </form>
+  </div>
+</template>
+
+<template name="keyResultItemSubmitForm">
+  <li><input class="keyResultItem" type="text" value="" placeholder=""/></li>
 </template>
