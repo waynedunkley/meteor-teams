@@ -13,6 +13,9 @@
                 {{/if}}
               </ul>
               <ul class="member-actions nav navbar-nav navbar-right">
+                {{#if currentUser}}
+                  <li class="profileImage"><img src="{{profileImageUrl}}" alt=""></li>
+                {{/if}}
                 <li>{{> login}}</li>
               </ul>
             </nav>
