@@ -39,5 +39,15 @@ Meteor.methods({
     }
 
     Tasks.update(taskId, { $set: { private: setToPrivate } });
-  }
+  },
+  deletePost: function (postId) {
+    var post = Posts.findOne(postId);
+
+    if( post.userId !== Meteor.userId() ) {
+      // Only allow owner to delete post
+      throw new Meteor.Error("not-authorized");
+    }
+    Posts.remove(postId);
+    Router.go('dashboard');
+  },
 });

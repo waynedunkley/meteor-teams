@@ -9,3 +9,13 @@ Template.postItem.helpers({
     return this.keyResults;
   }
 });
+
+Template.postItem.events({
+  'click .deleteItem' : function(e){
+    e.preventDefault();
+
+    if (confirm("Delete this post?")) {
+      Meteor.call("deletePost", this._id);
+    }
+  }
+});
