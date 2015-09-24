@@ -17,11 +17,13 @@ Template.postSubmit.events({
 
     //Iterate over keyResults and build Array
     $('.keyResultItem', e.target).each(function(index, value){
-      keyResults.push({
-        title: $(this).val(),
-        completed: 0,
-        tags: []
-      });
+      if( $(this).val() ){
+        keyResults.push({
+          title: $(this).val(),
+          completed: 0,
+          tags: []
+        });
+      }
     });
 
     //Create Post to add to Collection
