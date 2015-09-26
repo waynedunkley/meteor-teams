@@ -14,7 +14,7 @@ Template.teams.events({
     var teamId = $(e.target).closest('.team-name').attr('data-id');
     Meteor.call('setActiveTeam', teamId, function(error) {
       if (error)
-        return alert(error.reason);
+        return alert(error);
     });
   }
 });

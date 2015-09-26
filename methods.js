@@ -82,7 +82,14 @@ Meteor.methods({
     var t = Teams.findOne(teamId);
     if( !t ){
       //if team does not exist, remove team from users profile and invoke error
-      throw new Meteor.Error('Team no longer exists!');
+      Meteor.users.update({
+        _id: Meteor.userId()
+      }, {
+        $pull: {
+          "teams": { "_id": teamId }
+        }
+      }, { multi: true });
+      throw new Meteor.Error('Team no longer exists and may have been deleted by its owner');
     }
 
     //set active team marker
