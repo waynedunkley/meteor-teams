@@ -2,6 +2,10 @@ Meteor.publish('posts', function() {
   return Posts.find({'userId':this.userId});
 });
 
+Meteor.publish('teams', function() {
+  return Teams.find();
+});
+
 Meteor.publish('userData', function () {
   if (this.userId) {
     return Meteor.users.find({

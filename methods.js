@@ -50,4 +50,28 @@ Meteor.methods({
     Posts.remove(postId);
     Router.go('dashboard');
   },
+  createTeam: function(team){
+    //Check Team name does not already exist
+    var t = Teams.findOne({'name': team.name});
+
+    if( t ){
+      //If team already exists, throw error
+      throw new Meteor.Error('Team already exists!');
+    }
+
+    var team_id = Teams.insert(team);
+
+    var newTeam = {
+      'name': team.name,
+      '_id': team_id
+    };
+
+    Meteor.users.update({
+      _id:Meteor.userId()
+    }, {
+      $push: {
+        "teams": newTeam
+      }
+    }, { multi: true });
+  }
 });
