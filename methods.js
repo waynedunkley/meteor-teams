@@ -71,6 +71,26 @@ Meteor.methods({
     }, {
       $push: {
         "teams": newTeam
+      },
+      $set: {
+        "activeTeam": newTeam._id
+      }
+    }, { multi: true });
+  },
+  setActiveTeam: function(teamId){
+    //Confirm team exists
+    var t = Teams.findOne(teamId);
+    if( !t ){
+      //if team does not exist, remove team from users profile and invoke error
+      throw new Meteor.Error('Team no longer exists!');
+    }
+
+    //set active team marker
+    Meteor.users.update({
+      _id:Meteor.userId()
+    }, {
+      $set: {
+        "activeTeam": teamId
       }
     }, { multi: true });
   }

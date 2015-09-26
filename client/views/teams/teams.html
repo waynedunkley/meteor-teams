@@ -1,10 +1,13 @@
 <template name="teams">
 	<div class="container">
 		<div class="col-md-12">
+
+			<p>You are currently logged into: {{activeTeam.name}}</p>
+
 			<p>My Teams:</p>
 			<ul>
 				{{#each teams}}
-		      <li>{{name}}</li>
+		      <li data-id="{{_id}}" class="team-name">{{name}} <a href="#" class="switch">(switch)</a></li>
 		    {{/each}}
 			</ul>
 		</div>
