@@ -1273,6 +1273,9 @@ mark,
 .text-muted {
   color: #777777; }
 
+.text-white {
+  color: #fff !important; }
+
 .text-primary {
   color: #FF5274; }
 
@@ -5898,5 +5901,43 @@ header {
   .hero h1,
   .hero p.lead {
     color: #fff; }
+
+.glyphicon-refresh {
+  color: #31708f; }
+
+.glyphicon-ok {
+  color: #3c763d; }
+
+.glyphicon-remove {
+  color: #a94442; }
+
+.glyphicon-spin {
+  -webkit-animation: spin 2s infinite linear;
+  -moz-animation: spin 2s infinite linear;
+  -o-animation: spin 2s infinite linear;
+  animation: spin 2s infinite linear; }
+
+@-moz-keyframes spin {
+  0% {
+    -moz-transform: rotate(0deg); }
+  100% {
+    -moz-transform: rotate(359deg); } }
+@-webkit-keyframes spin {
+  0% {
+    -webkit-transform: rotate(0deg); }
+  100% {
+    -webkit-transform: rotate(359deg); } }
+@-o-keyframes spin {
+  0% {
+    -o-transform: rotate(0deg); }
+  100% {
+    -o-transform: rotate(359deg); } }
+@keyframes spin {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg); }
+  100% {
+    -webkit-transform: rotate(359deg);
+    transform: rotate(359deg); } }
 
 /*# sourceMappingURL=style.css.map */

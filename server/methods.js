@@ -100,5 +100,26 @@ Meteor.methods({
         "activeTeam": teamId
       }
     }, { multi: true });
+  },
+  validateTeamSlug: function(slug){
+
+    var regexpchar  = /^[a-z0-9-]+$/i,
+        regexpstart = /^-|-$/i;
+
+    // Validate slug only includes letters, numbers and -
+    if( ! regexpchar.test(slug) ){
+      throw new Meteor.Error('invalid-slug', 'Slugs can only have letters, number, and dashes.');
+    }
+
+    // Validate slug does not start or end with -
+    if( regexpstart.test(slug) ){
+      throw new Meteor.Error('invalid-slug', 'Slugs cannot start or end with a dash.');
+    }
+
+    var t = Teams.findOne({'slug': slug});
+    if( t ){
+      throw new Meteor.Error('team-exists', 'This name is not available');
+    }
+    return slug;
   }
 });

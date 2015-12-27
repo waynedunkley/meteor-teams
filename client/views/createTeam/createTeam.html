@@ -4,10 +4,14 @@
       <h1>Create a new team</h1>
       <form class="main">
         <div class="form-group">
-            <label for="name">Company or team name</label>
-            <div class="controls">
-              <input type="text" class="form-control" name="name" value="" placeholder=""/>
-            </div>
+            <label for="teamName">Company or team name</label>
+            <input type="text" id="teamName" class="form-control" name="teamName" value="" placeholder=""/>
+        </div>
+        <div class="form-group has-feedback">
+            <label for="teamSlug">Team Slug</label>
+            <input type="text" id="teamSlug" class="form-control" name="teamSlug" maxlength="32" aria-describedby="teamSlugHelp"/>
+            <span id="teamSlugErrorMessage" class="help-block text-danger"></span>
+            <span id="teamIDHelp" class="help-block text-italic">This is the unique name for your team, this is how new members can find you.</span>
         </div>
         <div class="form-group">
             <input type="submit" class="form-control btn btn-primary" value="Submit"/>

@@ -103,6 +103,10 @@ mark,
   color: $text-muted;
 }
 
+.text-white {
+  color: #fff !important;
+}
+
 @include text-emphasis-variant('.text-primary', $brand-primary);
 
 @include text-emphasis-variant('.text-success', $state-success-text);
