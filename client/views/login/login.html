@@ -7,8 +7,9 @@
       <br>
       <div class="panel panel-default">
         <div class="panel-body">
-          {{> loginForm}}
-          {{> registerForm}}
+          {{#if loginOrRegister }}
+            <p>{{> Template.dynamic template=loginOrRegister}}</p>
+          {{/if}}
         </div>
       </div>
     </div>

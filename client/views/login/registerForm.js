@@ -1,8 +1,7 @@
 Template.registerForm.events({
   'click #switch-to-login': function(e) {
     e.preventDefault();
-    $('#login-form').show();
-    $('#register-form').hide();
+    Session.set('loginOrRegister', 'loginForm');
   },
   'submit form': function(e){
     e.preventDefault();

@@ -1,3 +1,12 @@
+Template.login.helpers({
+  loginOrRegister: function () {
+    if( Session.get('loginOrRegister') === undefined ){
+      Session.set('loginOrRegister', 'loginForm');
+    }
+    return Session.get('loginOrRegister');
+  }
+});
+
 Template.login.events({
   'click #login-google': function(e){
     e.preventDefault();
