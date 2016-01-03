@@ -7,7 +7,9 @@ Template.login.events({
       if(error){
         throw new Meteor.Error("Goolge login failed");
       }else{
-        Router.go('dashboard');
+        if( Router.current().route.getName() === 'login' ){
+          Router.go('dashboard');
+        }
       }
     });
   },
@@ -19,7 +21,9 @@ Template.login.events({
         if (error) {
           throw new Meteor.Error("Facebook login failed");
         }else{
-          Router.go('dashboard');
+          if( Router.current().route.getName() === 'login' ){
+            Router.go('dashboard');
+          }
         }
       });
     }

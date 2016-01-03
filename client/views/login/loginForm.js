@@ -28,8 +28,7 @@ Template.loginForm.onRendered(function(){
             });
           }
         }else{
-          var currentRoute = Router.current().route.getName();
-          if(currentRoute == 'login'){
+          if( Router.current().route.getName() === 'login' ){
             Router.go('dashboard');
           }
         }
