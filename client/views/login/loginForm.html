@@ -1,0 +1,16 @@
+<template name="loginForm">
+  <form id="login-form">
+    <div class="form-group">
+      <label for="login-email" class="text-dark">Email address</label>
+      <input type="email" class="form-control" id="login-email" name="email" placeholder="Email" required>
+    </div>
+    <div class="form-group">
+      <label for="login-password" class="text-dark">Password</label>
+      <input type="password" class="form-control" id="login-password" name="password" placeholder="Password" required>
+    </div>
+    <button type="submit" class="btn btn-primary btn-lg btn-block">Login</button>
+    <div class="form-group">
+      <p class="help-block text-center" id="switch-to-register"><a href="#">Need to register?</a></p>
+    </div>
+  </form>
+</template>

@@ -1,22 +1,26 @@
 Template.login.events({
-  'click .login-google': function(e){
+  'click #login-google': function(e){
     e.preventDefault();
     Meteor.loginWithGoogle({
 
     }, function(error){
       if(error){
-        Session.set('errorMessage', error.reason || 'Unknown error');
+        throw new Meteor.Error("Goolge login failed");
       }else{
-        console.log(Meteor);
+        Router.go('dashboard');
       }
     });
   },
-  'click .logout-google': function(e){
+  'click #login-facebook': function(e) {
     e.preventDefault();
-    Meteor.logout({
+      Meteor.loginWithFacebook({
 
-    }, function(error){
-
-    });
-  }
+      }, function(error){
+        if (error) {
+          throw new Meteor.Error("Facebook login failed");
+        }else{
+          Router.go('dashboard');
+        }
+      });
+    }
 });

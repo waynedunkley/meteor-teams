@@ -1276,6 +1276,9 @@ mark,
 .text-white {
   color: #fff !important; }
 
+.text-dark {
+  color: #32383e !important; }
+
 .text-primary {
   color: #FF5274; }
 
@@ -2871,6 +2874,14 @@ select[multiple].input-lg,
   .form-horizontal .form-group-sm .control-label {
     padding-top: 6px;
     font-size: 12px; } }
+
+input.error {
+  border-color: #d9534f; }
+
+label.error {
+  color: #d9534f;
+  font-weight: normal;
+  font-style: italic; }
 
 .btn {
   display: inline-block;

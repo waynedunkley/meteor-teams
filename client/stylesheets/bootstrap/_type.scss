@@ -106,6 +106,9 @@ mark,
 .text-white {
   color: #fff !important;
 }
+.text-dark {
+  color: $gray !important;
+}
 
 @include text-emphasis-variant('.text-primary', $brand-primary);
 

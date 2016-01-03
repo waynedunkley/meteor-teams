@@ -609,3 +609,12 @@ input[type="checkbox"] {
     }
   }
 }
+
+input.error {
+  border-color: $brand-danger;
+}
+label.error {
+  color: $brand-danger;
+  font-weight: normal;
+  font-style: italic;
+}

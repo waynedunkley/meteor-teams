@@ -1,0 +1,7 @@
+<template name="loginButtonHeader">
+  {{#if currentUser}}
+    <a href="#" class="logout-header">Logout</a>
+  {{else}}
+    <a href="/login" class="login-header">Login</a>
+  {{/if}}
+</template>

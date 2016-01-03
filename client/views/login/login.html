@@ -1,7 +1,16 @@
 <template name="login">
-  {{#if currentUser}}
-    <a href="#" class="logout-google">Logout</a>
-  {{else}}
-    <a href="#" class="login-google">Login with Google</a>
-  {{/if}}
+  <div class="container">
+    <div class="col-md-4 col-md-offset-4">
+      <button type="button" id="login-google" class="btn btn-primary btn-lg btn-block">Login with Google</button>
+      <br>
+      <button type="button" id="login-facebook" class="btn btn-primary btn-lg btn-block">Login with Facebook</button>
+      <br>
+      <div class="panel panel-default">
+        <div class="panel-body">
+          {{> loginForm}}
+          {{> registerForm}}
+        </div>
+      </div>
+    </div>
+  </div>
 </template>
