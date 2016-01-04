@@ -65,7 +65,8 @@ Meteor.methods({
     var team_id,
         newTeam;
 
-    if( Teams.findOne({'name': team.name}) ){
+    t = Teams.findOne({'slug': team.slug});
+    if( t ){
       throw new Meteor.Error('Team already exists!');
     }
 
