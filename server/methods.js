@@ -52,11 +52,11 @@ Meteor.methods({
   },
 
   /**
-   * Create a new team. Current user will be assigned as 
+   * Create a new team. Current user will be assigned as
    * team 'admin' & 'owner'.
    *
    * @example
-   *    Meteor.call('createTeam', team, callback)
+   *    Meteor.call('createTeam', team)
    *
    * @method createTeam
    * @param {Object} team Object
@@ -88,11 +88,18 @@ Meteor.methods({
     }, { multi: true });
   },
 
+  /**
+   * Set users active team. If team does not exist,
+   * remove it from the users teams list.
+   *
+   * @example
+   *    Meteor.call('setActiveTeam', teamId)
+   *
+   * @method setActiveTeam
+   * @param {String} team Id
+   */
   setActiveTeam: function(teamId){
-    //Confirm team exists
-    var t = Teams.findOne(teamId);
-    if( !t ){
-      //if team does not exist, remove team from users profile and invoke error
+    if( !Teams.findOne(teamId) ){
       Meteor.users.update({
         _id: Meteor.userId()
       }, {
@@ -103,7 +110,6 @@ Meteor.methods({
       throw new Meteor.Error('Team no longer exists and may have been deleted by its owner');
     }
 
-    //set active team marker
     Meteor.users.update({
       _id:Meteor.userId()
     }, {
@@ -115,25 +121,35 @@ Meteor.methods({
       }
     }, { multi: true });
   },
+
+  /**
+   * Validate team slug is a valid string and that
+   * it does not already exist.
+   *
+   * @example
+   *    Meteor.call('validateTeamSlug', 'slug')
+   *
+   * @method validateTeamSlug
+   * @param {String} team slug
+   * @return {String} team slug
+   */
   validateTeamSlug: function(slug){
 
     var regexpchar  = /^[a-z0-9-]+$/i,
         regexpstart = /^-|-$/i;
 
-    // Validate slug only includes letters, numbers and -
     if( ! regexpchar.test(slug) ){
       throw new Meteor.Error('invalid-slug', 'Slugs can only have letters, number, and dashes.');
     }
 
-    // Validate slug does not start or end with -
     if( regexpstart.test(slug) ){
       throw new Meteor.Error('invalid-slug', 'Slugs cannot start or end with a dash.');
     }
 
-    var t = Teams.findOne({'slug': slug});
-    if( t ){
+    if( Teams.findOne({'slug': slug}) ){
       throw new Meteor.Error('team-exists', 'This name is not available');
     }
+
     return slug;
   }
 });
