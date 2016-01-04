@@ -50,33 +50,44 @@ Meteor.methods({
     Posts.remove(postId);
     Router.go('dashboard');
   },
-  createTeam: function(team){
-    //Check Team name does not already exist
-    var t = Teams.findOne({'name': team.name});
 
-    if( t ){
-      //If team already exists, throw error
+  /**
+   * Create a new team. Current user will be assigned as 
+   * team 'admin' & 'owner'.
+   *
+   * @example
+   *    Meteor.call('createTeam', team, callback)
+   *
+   * @method createTeam
+   * @param {Object} team Object
+   */
+  createTeam: function(team){
+    var team_id,
+        newTeam;
+
+    if( Teams.findOne({'name': team.name}) ){
       throw new Meteor.Error('Team already exists!');
     }
 
-    var team_id = Teams.insert(team);
-
-    var newTeam = {
+    team_id = Teams.insert(team);
+    newTeam = {
       'name': team.name,
-      '_id': team_id
+      '_id': team_id,
+      'roles': ['admin', 'owner']
     };
 
     Meteor.users.update({
-      _id:Meteor.userId()
+      _id: Meteor.userId()
     }, {
       $push: {
-        "teams": newTeam
+        'teams': newTeam
       },
       $set: {
-        "activeTeam": newTeam._id
+        'activeTeam': newTeam._id
       }
     }, { multi: true });
   },
+
   setActiveTeam: function(teamId){
     //Confirm team exists
     var t = Teams.findOne(teamId);
