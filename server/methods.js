@@ -97,7 +97,10 @@ Meteor.methods({
       _id:Meteor.userId()
     }, {
       $set: {
-        "activeTeam": teamId
+        "activeTeam": {
+          "_id" : teamId,
+          "name" : t.name
+        }
       }
     }, { multi: true });
   },

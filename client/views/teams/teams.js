@@ -3,7 +3,7 @@ Template.teams.helpers({
     return Meteor.user().teams;
   },
   activeTeam: function(){
-    var activeTeamId = Meteor.user().activeTeam;
+    var activeTeamId = Meteor.user().activeTeam._id;
     return Teams.findOne(activeTeamId);
   }
 });

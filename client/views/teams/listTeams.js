@@ -3,7 +3,7 @@ Template.listTeams.helpers({
     return Meteor.user().teams;
   },
   activeTeam: function(currentTeamId){
-    var activeTeamId = Meteor.user().activeTeam;
+    var activeTeamId = Meteor.user().activeTeam._id;
     if( activeTeamId == currentTeamId ){
       return true;
     }else{

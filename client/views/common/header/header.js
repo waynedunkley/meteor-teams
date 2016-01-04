@@ -4,6 +4,9 @@ Template.header.helpers({
   },
   profileImageUrl: function(){
     return Meteor.user().profile.picture;
+  },
+  activeTeam: function(){
+    return Meteor.user().activeTeam.name;
   }
 });
 
