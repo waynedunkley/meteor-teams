@@ -62,7 +62,8 @@ Meteor.methods({
    * @param {Object} team Object
    */
   createTeam: function(team){
-    var team_id,
+    var t,
+        team_id,
         newTeam;
 
     t = Teams.findOne({'slug': team.slug});
@@ -100,7 +101,10 @@ Meteor.methods({
    * @param {String} team Id
    */
   setActiveTeam: function(teamId){
-    if( !Teams.findOne(teamId) ){
+    var t;
+
+    t = Teams.findOne(teamId);
+    if( !t ){
       Meteor.users.update({
         _id: Meteor.userId()
       }, {
