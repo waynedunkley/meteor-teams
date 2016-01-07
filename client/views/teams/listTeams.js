@@ -3,8 +3,7 @@ Template.listTeams.helpers({
     return Teams.find().fetch();
   },
   activeTeam: function(currentTeamId){
-    var activeTeamId = Meteor.user().activeTeam._id;
-    if( activeTeamId == currentTeamId ){
+    if( Meteor.user().activeTeam._id == currentTeamId ){
       return true;
     }else{
       return false;
