@@ -12,24 +12,7 @@
                   <li><a href="{{pathFor 'postSubmit'}}">New Post</a></li>
                 {{/if}}
               </ul>
-              <ul class="member-actions nav navbar-nav navbar-right">
-                {{#if currentUser}}
-                  <li class="profileImage"><img src="{{profileImageUrl}}" alt=""></li>
-                  <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{activeTeam}} <span class="caret"></span></a>
-                    <ul class="dropdown-menu">
-                      <li><a href="{{pathFor 'profile'}}">Profile</a></li>
-                      <li role="separator" class="divider"></li>
-                      {{> teamsMenu}}
-                      <li><a href="#" class="logout-header">Logout</a></li>
-                    </ul>
-                  </li>
-                {{/if}}
-                {{#unless currentUser}}
-                  <li><a href="/login" class="login-header">Login</a></li>
-                  <li><a href="{{pathFor 'createTeam'}}">Create New Team</a></li>
-                {{/unless}}
-              </ul>
+              {{> actionsMenu}}
             </nav>
           </div>
         </div>

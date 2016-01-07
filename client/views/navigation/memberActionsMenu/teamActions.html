@@ -1,4 +1,4 @@
-<template name="teamsMenu">
+<template name="teamActions">
   {{#if teams}}
     {{#each teams}}
       <li data-teamId="{{_id}}" class="team-name">
@@ -12,6 +12,8 @@
     <li role="separator" class="divider"></li>
     <li><a href="{{pathFor 'createTeam'}}">Create New Team</a></li>
     <li><a href="{{pathFor 'manageTeam'}}">Manage Team</a></li>
-    <li role="separator" class="divider"></li>
+  {{else}}
+    <li><a href="{{pathFor 'createTeam'}}">Create New Team</a></li>
   {{/if}}
+  <li role="separator" class="divider"></li>
 </template>
