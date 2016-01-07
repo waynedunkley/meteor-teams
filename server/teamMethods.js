@@ -13,9 +13,10 @@ Meteor.methods({
   createTeam: function(teamName, teamSlug){
     var t,
         teamObj = {},
-        newTeamId;
+        newTeamId,
+        userId = Meteor.userId();
 
-    t = Teams.findOne({'slug': teamSlug});
+    t = Meteor.teams.findOne({'slug': teamSlug});
     if( t ){
       throw new Meteor.Error('Team already exists!');
     }
@@ -24,15 +25,19 @@ Meteor.methods({
       name: teamName,
       slug: teamSlug,
       owner: Meteor.user().profile.name,
-      ownerId: Meteor.userId(),
+      ownerId: userId,
       members: [{
-        '_id': Meteor.userId(),
-        'permission': ['admin', 'owner']
+        '_id': userId,
       }]
     };
 
-    newTeamId = Teams.insert(teamObj);
+    //Add the new team to the Teams collection
+    newTeamId = Meteor.teams.insert(teamObj);
 
+    //Add admin role for user
+    Roles.addUsersToRoles(userId, ['admin', 'owner'], newTeamId);
+
+    //Update users active team
     Meteor.users.update({
       _id: Meteor.userId()
     }, {
@@ -56,10 +61,10 @@ Meteor.methods({
    * @param {String} team Id
    */
   setActiveTeam: function(teamId){
-    var t;
+    var teamObj;
 
-    t = Teams.findOne(teamId);
-    if( !t ){
+    teamObj = Meteor.teams.findOne(teamId);
+    if( !teamObj ){
       Meteor.users.update({
         _id: Meteor.userId()
       }, {
@@ -71,15 +76,16 @@ Meteor.methods({
     }
 
     Meteor.users.update({
-      _id:Meteor.userId()
+      _id: Meteor.userId()
     }, {
       $set: {
-        "activeTeam": {
-          "_id" : teamId,
-          "name" : t.name
-        }
+        'activeTeam': teamId
       }
-    }, { multi: true });
+    },{
+      multi: true
+    });
+
+    return teamObj._id;
   },
 
   /**
@@ -106,7 +112,7 @@ Meteor.methods({
       throw new Meteor.Error('invalid-slug', 'Slugs cannot start or end with a dash.');
     }
 
-    if( Teams.findOne({'slug': slug}) ){
+    if( Meteor.teams.findOne({'slug': slug}) ){
       throw new Meteor.Error('team-exists', 'This name is not available');
     }
 

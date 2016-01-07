@@ -1,13 +1,11 @@
 Template.teamActions.helpers({
   teams: function(){
-    return Teams.find().fetch();
+    var teams = Meteor.teams.find({},{ fields: { _id: 1, name: 1 } }).fetch();
+    return teams;
   },
-  activeTeam: function(currentTeamId){
-    if( Session.get('activeTeam') == currentTeamId ){
-      return true;
-    }else{
-      return false;
-    }
+  activeTeam: function(){
+    var activeTeam = Teams.getActiveTeam();
+    return Roles.userIsInRole(Meteor.userId(), 'admin', activeTeam._id);
   }
 });
 
@@ -19,8 +17,6 @@ Template.teamActions.events({
       if (error){
         return alert(error);
       }
-
-      Session.set('activeTeam', newTeamId);
     });
   }
 });

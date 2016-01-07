@@ -7,7 +7,7 @@ Meteor.publish('teams', function() {
     return null;
   }
 
-  var usersTeams = Teams.find({
+  var usersTeams = Meteor.teams.find({
     'members': {
       $elemMatch: {
         '_id': this.userId
@@ -18,6 +18,7 @@ Meteor.publish('teams', function() {
 });
 
 Meteor.publish('userData', function () {
+  Meteor.users.findOne();
   if (this.userId) {
     return Meteor.users.find({
       _id: this.userId

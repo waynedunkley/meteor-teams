@@ -3,9 +3,10 @@ Template.actionsMenu.helpers({
     return Meteor.user().profile.picture;
   },
   activeTeamName: function(){
-    var user = Meteor.user();
-    if( _.has( user, 'activeTeam') ){
-      return user.activeTeam.name;
+    var team = Teams.getActiveTeam();
+
+    if(team.name){
+      return team.name;
     }else{
       return "Menu";
     }
