@@ -3,7 +3,18 @@ Meteor.publish('posts', function() {
 });
 
 Meteor.publish('teams', function() {
-  return Teams.find();
+  if( !this.userId ){
+    return null;
+  }
+
+  var usersTeams = Teams.find({
+    'members': {
+      $elemMatch: {
+        '_id': this.userId
+      }
+    }
+  });
+  return usersTeams;
 });
 
 Meteor.publish('userData', function () {
