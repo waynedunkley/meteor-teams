@@ -20,11 +20,7 @@
                     <ul class="dropdown-menu">
                       <li><a href="{{pathFor 'profile'}}">Profile</a></li>
                       <li role="separator" class="divider"></li>
-                      {{> listTeams}}
-                      <li role="separator" class="divider"></li>
-                      <li><a href="{{pathFor 'createTeam'}}">Create New Team</a></li>
-                      <li><a href="{{pathFor 'manageTeam'}}">Manage Team</a></li>
-                      <li role="separator" class="divider"></li>
+                      {{> teamsMenu}}
                       <li><a href="#" class="logout-header">Logout</a></li>
                     </ul>
                   </li>

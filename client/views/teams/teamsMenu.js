@@ -1,4 +1,4 @@
-Template.listTeams.helpers({
+Template.teamsMenu.helpers({
   teams: function(){
     return Teams.find().fetch();
   },
@@ -11,7 +11,7 @@ Template.listTeams.helpers({
   }
 });
 
-Template.listTeams.events({
+Template.teamsMenu.events({
   'click .switch-team' : function(e){
     e.preventDefault();
     var teamId = $(e.target).closest('.team-name').attr('data-teamId');

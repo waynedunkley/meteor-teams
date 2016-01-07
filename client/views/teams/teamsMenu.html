@@ -1,0 +1,17 @@
+<template name="teamsMenu">
+  {{#if teams}}
+    {{#each teams}}
+      <li data-teamId="{{_id}}" class="team-name">
+        <a href="#" class="switch-team">{{name}}
+          {{#if activeTeam _id}}
+            <span class="glyphicon glyphicon-ok-circle pull-right" aria-hidden="true"></span>
+          {{/if}}
+        </a>
+      </li>
+    {{/each}}
+    <li role="separator" class="divider"></li>
+    <li><a href="{{pathFor 'createTeam'}}">Create New Team</a></li>
+    <li><a href="{{pathFor 'manageTeam'}}">Manage Team</a></li>
+    <li role="separator" class="divider"></li>
+  {{/if}}
+</template>
