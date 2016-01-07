@@ -15,6 +15,7 @@ Template.createTeam.events({
     });
   },
   'keydown #teamSlug' : function(e){
+    //disable the spacebar
     if(e.which == 32){
       e.preventDefault();
     }
