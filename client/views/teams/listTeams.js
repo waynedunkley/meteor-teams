@@ -1,6 +1,6 @@
 Template.listTeams.helpers({
   teams: function(){
-    return Meteor.user().teams;
+    return Teams.find().fetch();
   },
   activeTeam: function(currentTeamId){
     var activeTeamId = Meteor.user().activeTeam._id;
