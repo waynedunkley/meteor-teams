@@ -7,33 +7,40 @@ Meteor.methods({
    *    Meteor.call('createTeam', team)
    *
    * @method createTeam
-   * @param {Object} team Object
+   * @param {String} team name
+   * @param {String} team slug
    */
-  createTeam: function(team){
+  createTeam: function(teamName, teamSlug){
     var t,
-        team_id,
-        newTeam;
+        teamObj = {},
+        newTeamId;
 
-    t = Teams.findOne({'slug': team.slug});
+    t = Teams.findOne({'slug': teamSlug});
     if( t ){
       throw new Meteor.Error('Team already exists!');
     }
 
-    team_id = Teams.insert(team);
-    newTeam = {
-      'name': team.name,
-      '_id': team_id,
-      'roles': ['admin', 'owner']
+    teamObj = {
+      name: teamName,
+      slug: teamSlug,
+      owner: Meteor.user().profile.name,
+      ownerId: Meteor.userId(),
+      members: [{
+        '_id': Meteor.userId(),
+        'permission': ['admin', 'owner']
+      }]
     };
+
+    newTeamId = Teams.insert(teamObj);
 
     Meteor.users.update({
       _id: Meteor.userId()
     }, {
       $push: {
-        'teams': newTeam
+        'teams': newTeamId
       },
       $set: {
-        'activeTeam': newTeam._id
+        'activeTeam': newTeamId
       }
     }, { multi: true });
   },
